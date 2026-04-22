@@ -40,3 +40,4 @@ coverage/
 # Optional: Static analysis cache
 .eslintcache
 .next/cache
+.vercel
