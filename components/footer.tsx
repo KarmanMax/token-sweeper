@@ -5,7 +5,7 @@ import { Heart, ExternalLink } from "lucide-react"
 export default function Footer() {
   return (
     <footer className="sticky top-[100vh] bg-white border-t">
-      <div className="container mx-auto px-4 py-4">
+      {/* <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-center gap-2 text-sm text-gray-600">
           <span>Built with</span>
           <Heart className="w-4 h-4 text-red-500 fill-current" />
@@ -23,7 +23,7 @@ export default function Footer() {
             Token Sweeper is a decentralized application. Always verify transactions before signing. Not financial advice.
           </span>
         </div>
-      </div>
+      </div> */}
     </footer>
   )
 }

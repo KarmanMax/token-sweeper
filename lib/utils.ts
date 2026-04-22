@@ -67,6 +67,11 @@ export function getTokenLogoUrl(
   // Fallback to Trust Wallet URLs
   const chainName = getTrustWalletChainName(chainId)
 
+  // Fallback to MetaMask
+  if (token.contract_address && isAddress(token.contract_address)) {
+    return `https://static.cx.metamask.io/api/v1/tokenIcons/${chainId}/${token.contract_address.toLowerCase()}.png`
+  }
+
   if (chainName && token.contract_address && isAddress(token.contract_address)) {
     const trustWalletUrl = `https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/${chainName}/assets/${getAddress(
       token.contract_address
