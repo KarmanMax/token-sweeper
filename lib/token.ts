@@ -1,0 +1,736 @@
+export enum SupportedChainId {
+  OPTIMISM = 10,
+  BASE = 8453,
+}
+
+export const TOKEN_LIST = {
+  [SupportedChainId.OPTIMISM]: {
+    fBOMB: {
+      name: 'fBOMB',
+      address: '0x74ccbe53F77b08632ce0CB91D3A545bF6B8E0979',
+      decimals: 18,
+    },
+    PERP: {
+      name: 'PERP',
+      address: '0x9e1028F5F1D5eDE59748FFceE5532509976840E0',
+      decimals: 18,
+    },
+    MTA: {
+      name: 'MTA',
+      address: '0x929B939f8524c3Be977af57A4A0aD3fb1E374b50',
+      decimals: 18,
+    },
+    GNode: {
+      name: 'GNode',
+      address: '0x5976d4c3bcFc1c5f90aB1419D7f3dDF109cEA35a',
+      decimals: 18,
+    },
+    wUSDRV3: {
+      name: 'wUSDR',
+      address: '0xC03b43d492d904406db2d7D57e67C7e8234bA752',
+      decimals: 9,
+    },
+    TAROTV2: {
+      name: 'TAROT',
+      address: '0x1F514A61bcde34F94Bc39731235690ab9da737F7',
+      decimals: 18,
+    },
+    tBTC: {
+      name: 'tBTC',
+      address: '0x6c84a8f1c29108F47a79964b5Fe888D4f4D0dE40',
+      decimals: 18,
+    },
+    WBTC: {
+      name: 'WBTC',
+      address: '0x68f180fcCe6836688e9084f035309E29Bf0A2095',
+      decimals: 8,
+    },
+    UNIDX: {
+      name: 'UNIDX',
+      address: '0x28b42698Caf46B4B012CF38b6C75867E0762186D',
+      decimals: 18,
+    },
+    TAROT: {
+      name: 'TAROT',
+      address: '0x375488F097176507e39B9653b88FDc52cDE736Bf',
+      decimals: 18,
+    },
+    EURA: {
+      name: 'EURA',
+      address: '0x9485aca5bbBE1667AD97c7fE7C4531a624C8b1ED',
+      decimals: 18,
+    },
+    LUSD: {
+      name: 'LUSD',
+      address: '0xc40F949F8a4e094D1b49a23ea9241D289B7b2819',
+      decimals: 18,
+    },
+    WLD: {
+      name: 'WLD',
+      address: '0xdC6fF44d5d932Cbd77B52E5612Ba0529DC6226F1',
+      decimals: 18,
+    },
+    EXA: {
+      name: 'EXA',
+      address: '0x1e925De1c68ef83bD98eE3E130eF14a50309C01B',
+      decimals: 18,
+    },
+    BLU: {
+      name: 'BLU',
+      address: '0xa50B23cDfB2eC7c590e84f403256f67cE6dffB84',
+      decimals: 18,
+    },
+    RED: {
+      name: 'RED',
+      address: '0x3417E54A51924C225330f8770514aD5560B9098D',
+      decimals: 18,
+    },
+    msETH: {
+      name: 'msETH',
+      address: '0x1610e3c85dd44Af31eD7f33a63642012Dca0C5A5',
+      decimals: 18,
+    },
+    alETH: {
+      name: 'alETH',
+      address: '0x3E29D3A9316dAB217754d13b28646B76607c5f04',
+      decimals: 18,
+    },
+    VELOV2: {
+      name: 'VELO',
+      address: '0x9560e827af36c94d2ac33a39bce1fe78631088db',
+      decimals: 18,
+    },
+    EXTRA: {
+      name: 'EXTRA',
+      address: '0x2dad3a13ef0c6366220f989157009e501e7938f8',
+      decimals: 18,
+    },
+    veEXTRA: {
+      name: 'veEXTRA',
+      address: '0xe0BeC4F45aEF64CeC9dCB9010d4beFfB13e91466',
+      decimals: 18,
+    },
+    wUSDR: {
+      name: 'wUSDR',
+      address: '0x340fE1D898ECCAad394e2ba0fC1F93d27c7b717A',
+      decimals: 9,
+    },
+    frxETH: {
+      name: 'frxETH',
+      address: '0x6806411765Af15Bddd26f8f544A34cC40cb9838B',
+      decimals: 18,
+    },
+    wstETH: {
+      name: 'wstETH',
+      address: '0x1F32b1c2345538c0c6f582fCB022739c4A194Ebb',
+      decimals: 18,
+    },
+    SONNE: {
+      name: 'SONNE',
+      address: '0x1DB2466d9F5e10D7090E7152B68d62703a2245F0',
+      decimals: 18,
+    },
+    LYRA: {
+      name: 'LYRA',
+      address: '0x50c5725949A6F0c72E6C4a641F24049A917DB0Cb',
+      decimals: 18,
+    },
+    alUSD: {
+      name: 'alUSD',
+      address: '0xCB8FA9a76b8e203D8C3797bF438d8FB81Ea3326A',
+      decimals: 18,
+    },
+    KWENTA: {
+      name: 'KWENTA',
+      address: '0x920Cf626a271321C151D027030D5d08aF699456b',
+      decimals: 18,
+    },
+    'USD+': {
+      name: 'USD+',
+      address: '0x73cb180bf0521828d8849bc8CF2B920918e23032',
+      decimals: 6,
+    },
+    STG: {
+      name: 'STG',
+      address: '0x296F55F8Fb28E498B858d0BcDA06D955B2Cb3f97',
+      decimals: 18,
+    },
+    VELO: {
+      name: 'VELO',
+      address: '0x3c8B650257cFb5f272f799F5e2b4e65093a11a05',
+      decimals: 18,
+    },
+    WETH: {
+      name: 'WETH',
+      address: '0x4200000000000000000000000000000000000006',
+      decimals: 18,
+    },
+    OP: {
+      name: 'OP',
+      address: '0x4200000000000000000000000000000000000042',
+      decimals: 18,
+    },
+    USDCe: {
+      name: 'USDC.e',
+      address: '0x7F5c764cBc14f9669B88837ca1490cCa17c31607',
+      decimals: 6,
+    },
+    USDT: {
+      name: 'USDT',
+      address: '0x94b008aA00579c1307B0EF2c499aD98a8ce58e58',
+      decimals: 6,
+    },
+    SNX: {
+      name: 'SNX',
+      address: '0x8700dAec35aF8Ff88c16BdF0418774CB3D7599B4',
+      decimals: 18,
+    },
+    DOLA: {
+      name: 'DOLA',
+      address: '0x8aE125E8653821E851F12A49F7765db9a9ce7384',
+      decimals: 18,
+    },
+    sUSD: {
+      name: 'sUSD',
+      address: '0x8c6f28f2F1A3C87F0f938b96d27520d9751ec8d9',
+      decimals: 18,
+    },
+    MAI: {
+      name: 'MAI',
+      address: '0xdFA46478F9e5EA86d57387849598dbFB2e964b02',
+      decimals: 18,
+    },
+    DAI: {
+      name: 'DAI',
+      address: '0xDA10009cBd5D07dd0CeCc66161FC93D7c9000da1',
+      decimals: 18,
+    },
+    USX: {
+      name: 'USX',
+      address: '0xbfD291DA8A403DAAF7e5E9DC1ec0aCEaCd4848B9',
+      decimals: 18,
+    },
+    DHT: {
+      name: 'DHT',
+      address: '0xAF9fE3B5cCDAe78188B1F8b9a49Da7ae9510F151',
+      decimals: 18,
+    },
+    THALES: {
+      name: 'THALES',
+      address: '0x217D47011b23BB961eB6D93cA9945B7501a5BB11',
+      decimals: 18,
+    },
+    BOB: {
+      name: 'BOB',
+      address: '0xB0B195aEFA3650A6908f15CdaC7D92F8a5791B0B',
+      decimals: 18,
+    },
+    FRAX: {
+      name: 'FRAX',
+      address: '0x2E3D870790dC77A83DD1d18184Acc7439A53f475',
+      decimals: 18,
+    },
+    'DAI+': {
+      name: 'DAI+',
+      address: '0x970D50d09F3a656b43E11B0D45241a84e3a6e011',
+      decimals: 18,
+    },
+    ERN: {
+      name: 'ERN',
+      address: '0xc5b001DC33727F8F26880B184090D3E252470D45',
+      decimals: 18,
+    },
+    CHI: {
+      name: 'CHI',
+      address: '0xCa0E54b636DB823847B29F506BFFEE743F57729D',
+      decimals: 18,
+    },
+    msUSD: {
+      name: 'msUSD',
+      address: '0x9dabae7274d28a45f0b65bf8ed201a5731492ca0',
+      decimals: 18,
+    },
+    OVN: {
+      name: 'OVN',
+      address: '0x3b08fcd15280e7B5A6e404c4abb87F7C774D1B2e',
+      decimals: 18,
+    },
+    msOP: {
+      name: 'msOP',
+      address: '0x33bca143d9b41322479e8d26072a00a352404721',
+      decimals: 18,
+    },
+    LDO: {
+      name: 'LDO',
+      address: '0xfdb794692724153d1488ccdbe0c56c252596735f',
+      decimals: 18,
+    },
+    USDV: {
+      name: 'USDV',
+      address: '0x323665443cef804a3b5206103304bd4872ea4253',
+      decimals: 6,
+    },
+    USDC: {
+      name: 'USDC',
+      address: '0x0b2C639c533813f4Aa9D7837CAf62653d097Ff85',
+      decimals: 6,
+    },
+    '2192': {
+      name: '2192',
+      address: '0x3ed9acaac7bd974eb83a8ea6432a239e3c829d5d',
+      decimals: 18,
+    },
+    pxETH: {
+      name: 'pxETH',
+      address: '0x300d2c875c6fb8ce4bf5480b4d34b7c9ea8a33a4',
+      decimals: 18,
+    },
+    TKN: {
+      name: 'TKN',
+      address: '0x3eb398fec5f7327c6b15099a9681d9568ded2e82',
+      decimals: 18,
+    },
+    wrsETH: {
+      name: 'wrsETH',
+      address: '0x87eee96d50fb761ad85b1c982d28a042169d61b1',
+      decimals: 18,
+    },
+    esEXA: {
+      name: 'esEXA',
+      address: '0xbea586A167853ADddEF12818f264f1F9823fBc18',
+      decimals: 18,
+    },
+    USDA: {
+      name: 'USDA',
+      address: '0x0000206329b97db379d5e1bf586bbdb969c63274',
+      decimals: 18,
+    },
+    TLX: {
+      name: 'TLX',
+      address: '0xd9cc3d70e730503e7f28c1b407389198c4b75fa2',
+      decimals: 18,
+    },
+    weETH: {
+      name: 'weETH',
+      address: '0x5a7facb970d094b6c7ff1df0ea68d99e6e73cbff',
+      decimals: 18,
+    },
+  },
+  [SupportedChainId.BASE]: {
+    WETH: {
+      name: 'WETH',
+      address: '0x4200000000000000000000000000000000000006',
+      decimals: 18,
+    },
+    USDbC: {
+      name: 'USDbC',
+      address: '0xd9aAEc86B65D86f6A7B5B1b0c42FFA531710b6CA',
+      decimals: 6,
+    },
+    AERO: {
+      name: 'AERO',
+      address: '0x940181a94A35A4569E4529A3CDfB74e38FD98631',
+      decimals: 18,
+    },
+    EXTRA: {
+      name: 'EXTRA',
+      address: '0x2dAD3a13ef0C6366220f989157009e501e7938F8',
+      decimals: 18,
+    },
+    TAROT: {
+      name: 'TAROT',
+      address: '0xF544251D25f3d243A36B07e7E7962a678f952691',
+      decimals: 18,
+    },
+    wUSDR: {
+      name: 'wUSDR',
+      address: '0x9483ab65847A447e36d21af1CaB8C87e9712ff93',
+      decimals: 9,
+    },
+    DOLA: {
+      name: 'DOLA',
+      address: '0x4621b7a9c75199271f773ebd9a499dbd165c3191',
+      decimals: 18,
+    },
+    ERN: {
+      name: 'ERN',
+      address: '0xa334884bf6b0a066d553d19e507315e839409e62',
+      decimals: 18,
+    },
+    STG: {
+      name: 'STG',
+      address: '0xe3b53af74a4bf62ae5511055290838050bf764df',
+      decimals: 18,
+    },
+    'DAI+': {
+      name: 'DAI+',
+      address: '0x65a2508C429a6078a7BC2f7dF81aB575BD9D9275',
+      decimals: 18,
+    },
+    'USD+': {
+      name: 'USD+',
+      address: '0xB79DD08EA68A908A97220C76d19A6aA9cBDE4376',
+      decimals: 6,
+    },
+    cbETH: {
+      name: 'cbETH',
+      address: '0x2ae3f1ec7f1f5012cfeab0185bfc7aa3cf0dec22',
+      decimals: 18,
+    },
+    SONNE: {
+      name: 'SONNE',
+      address: '0x22a2488fe295047ba13bd8cccdbc8361dbd8cf7c',
+      decimals: 18,
+    },
+    tBTC: {
+      name: 'tBTC',
+      address: '0x236aa50979d5f3de3bd1eeb40e81137f22ab794b',
+      decimals: 18,
+    },
+    MAI: {
+      name: 'MAI',
+      address: '0xbf1aea8670d2528e08334083616dd9c5f3b087ae',
+      decimals: 18,
+    },
+    YFX: {
+      name: 'YFX',
+      address: '0x8901cb2e82cc95c01e42206f8d1f417fe53e7af0',
+      decimals: 18,
+    },
+    UNIDX: {
+      name: 'UNIDX',
+      address: '0x6b4712ae9797c199edd44f897ca09bc57628a1cf',
+      decimals: 18,
+    },
+    DEUS: {
+      name: 'DEUS',
+      address: '0xde5ed76e7c05ec5e4572cfc88d1acea165109e44',
+      decimals: 18,
+    },
+    BASED: {
+      name: 'BASED',
+      address: '0x9cbd543f1b1166b2df36b68eb6bb1dce24e6abdf',
+      decimals: 18,
+    },
+    WELL: {
+      name: 'WELL',
+      address: '0xff8adec2221f9f4d8dfbafa6b9a297d17603493d',
+      decimals: 18,
+    },
+    USDC: {
+      name: 'USDC',
+      address: '0x833589fcd6edb6e08f4c7c32d4f71b54bda02913',
+      decimals: 6,
+    },
+    OVN: {
+      name: 'OVN',
+      address: '0xa3d1a8deb97b111454b294e2324efad13a9d8396',
+      decimals: 18,
+    },
+    wstETH: {
+      name: 'wstETH',
+      address: '0xc1cba3fcea344f92d9239c08c0568f6f2f0ee452',
+      decimals: 18,
+    },
+    eUSD: {
+      name: 'eUSD',
+      address: '0xCfA3Ef56d303AE4fAabA0592388F19d7C3399FB4',
+      decimals: 18,
+    },
+    DAI: {
+      name: 'DAI',
+      address: '0x50c5725949A6F0c72E6C4a641F24049A917DB0Cb',
+      decimals: 18,
+    },
+    DOG: {
+      name: 'DOG',
+      address: '0x9e53e88dcff56d3062510a745952dec4cefdff9e',
+      decimals: 18,
+    },
+    TYBG: {
+      name: 'TYBG',
+      address: '0x0d97f261b1e88845184f678e2d1e7a98d9fd38de',
+      decimals: 18,
+    },
+    bsdETH: {
+      name: 'bsdETH',
+      address: '0xcb327b99ff831bf8223cced12b1338ff3aa322ff',
+      decimals: 18,
+    },
+    WELS: {
+      name: 'WELS',
+      address: '0x7f62ac1e974d65fab4a81821ca6af659a5f46298',
+      decimals: 18,
+    },
+    GB: {
+      name: 'GB',
+      address: '0x2af864fb54b55900cd58d19c7102d9e4fa8d84a3',
+      decimals: 18,
+    },
+    STAR: {
+      name: 'STAR',
+      address: '0xc19669a405067927865b40ea045a2baabbbe57f5',
+      decimals: 18,
+    },
+    MET: {
+      name: 'MET',
+      address: '0x93dc5cb35627a759848c7a7f0079ea7b49e435a5',
+      decimals: 18,
+    },
+    THALES: {
+      name: 'THALES',
+      address: '0xf34e0cff046e154cafcae502c7541b9e5fd8c249',
+      decimals: 18,
+    },
+    LUSD: {
+      name: 'LUSD',
+      address: '0x368181499736d0c0cc614dbb145e2ec1ac86b8c6',
+      decimals: 18,
+    },
+    RSR: {
+      name: 'RSR',
+      address: '0xab36452dbac151be02b16ca17d8919826072f64a',
+      decimals: 18,
+    },
+    VIRTUAL: {
+      name: 'VIRTUAL',
+      address: '0x0b3e328455c4059eeb9e3f84b5543f74e24e7e1b',
+      decimals: 18,
+    },
+    SEXY: {
+      name: 'SEXY',
+      address: '0xd1917629b3e6a72e6772aab5dbe58eb7fa3c2f33',
+      decimals: 18,
+    },
+    TKN: {
+      name: 'TKN',
+      address: '0x78b3c724a2f663d11373c4a1978689271895256f',
+      decimals: 18,
+    },
+    wBaseDOGE: {
+      name: 'wBaseDOGE',
+      address: '0x373504da48418c67e6fcd071f33cb0b3b47613c7',
+      decimals: 18,
+    },
+    DEGEN: {
+      name: 'DEGEN',
+      address: '0x4ed4e862860bed51a9570b96d89af5e1b0efefed',
+      decimals: 18,
+    },
+    ezETH: {
+      name: 'ezETH',
+      address: '0x2416092f143378750bb29b79ed961ab195cceea5',
+      decimals: 18,
+    },
+    SNX: {
+      name: 'SNX',
+      address: '0x22e6966b799c4d5b13be962e1d117b56327fda66',
+      decimals: 18,
+    },
+    hyUSD: {
+      name: 'hyUSD',
+      address: '0xcc7ff230365bd730ee4b352cc2492cedac49383e',
+      decimals: 18,
+    },
+    'USDC+': {
+      name: 'USDC+',
+      address: '0x85483696cc9970ad9edd786b2c5ef735f38d156f',
+      decimals: 6,
+    },
+    crvUSD: {
+      name: 'crvUSD',
+      address: '0x417ac0e078398c154edfadd9ef675d30be60af93',
+      decimals: 18,
+    },
+    'WELL-NATIVE': {
+      name: 'WELL',
+      address: '0xa88594d404727625a9437c3f886c7643872296ae',
+      decimals: 18,
+    },
+    ANIME: {
+      name: 'ANIME',
+      address: '0x0e0c9756a3290cd782cf4ab73ac24d25291c9564',
+      decimals: 18,
+    },
+    weETH: {
+      name: 'weETH',
+      address: '0x04c0599ae5a44757c0af6f9ec3b93da8976c150a',
+      decimals: 18,
+    },
+    QI: {
+      name: 'QI',
+      address: '0xd3fdcb837dafdb7c9c3ebd48fe22a53f6dd3d7d7',
+      decimals: 18,
+    },
+    KLIMA: {
+      name: 'KLIMA',
+      address: '0xdcefd8c8fcc492630b943abcab3429f12ea9fea2',
+      decimals: 9,
+    },
+    TOWER: {
+      name: 'TOWER',
+      address: '0xf7c1cefcf7e1dd8161e00099facd3e1db9e528ee',
+      decimals: 18,
+    },
+    wrsETH: {
+      name: 'wrsETH',
+      address: '0xedfa23602d0ec14714057867a78d01e94176bea0',
+      decimals: 18,
+    },
+    USDA: {
+      name: 'USDA',
+      address: '0x0000206329b97db379d5e1bf586bbdb969c63274',
+      decimals: 18,
+    },
+    EURA: {
+      name: 'EURA',
+      address: '0xa61beb4a3d02decb01039e378237032b351125b4',
+      decimals: 18,
+    },
+    USDz: {
+      name: 'USDz',
+      address: '0x04d5ddf5f3a8939889f11e97f8c4bb48317f1938',
+      decimals: 18,
+    },
+    GHST: {
+      name: 'GHST',
+      address: '0xcd2f22236dd9dfe2356d7c543161d4d260fd9bcb',
+      decimals: 18,
+    },
+    HBR: {
+      name: 'HBR',
+      address: '0x416bd43bc76d496ff49923c20ecaf86b52ab078d',
+      decimals: 18,
+    },
+    msETH: {
+      name: 'msETH',
+      address: '0x7ba6f01772924a82d9626c126347a28299e98c98',
+      decimals: 18,
+    },
+    msUSD: {
+      name: 'msUSD',
+      address: '0x526728dbc96689597f85ae4cd716d4f7fccbae9d',
+      decimals: 18,
+    },
+    BAVA: {
+      name: 'BAVA',
+      address: '0x3fbde9864362ce4abb244ebef2ef0482aba8ea39',
+      decimals: 18,
+    },
+    sUSDz: {
+      name: 'sUSDz',
+      address: '0xe31ee12bdfdd0573d634124611e85338e2cbf0cf',
+      decimals: 18,
+    },
+    BCT: {
+      name: 'BCT',
+      address: '0x576bca23dcb6d94ff8e537d88b0d3e1bead444a2',
+      decimals: 18,
+    },
+    EURC: {
+      name: 'EURC',
+      address: '0x60a3e35cc302bfa44cb288bc5a4f316fdb1adb42',
+      decimals: 6,
+    },
+    PDT: {
+      name: 'PDT',
+      address: '0xeff2a458e464b07088bdb441c21a42ab4b61e07e',
+      decimals: 18,
+    },
+    MODE: {
+      name: 'MODE',
+      address: '0x084382d1cc4f4dfd1769b1cc1ac2a9b1f8365e90',
+      decimals: 18,
+    },
+    cbBTC: {
+      name: 'cbBTC',
+      address: '0xcbb7c0000ab88b473b1f5afd9ef808440eed33bf',
+      decimals: 8,
+    },
+    OGN: {
+      name: 'OGN',
+      address: '0x7002458b1df59eccb57387bc79ffc7c29e22e6f7',
+      decimals: 18,
+    },
+    superOETHb: {
+      name: 'superOETHb',
+      address: '0xdbfefd2e8460a6ee4955a68582f85708baea60a3',
+      decimals: 18,
+    },
+    LRDS: {
+      name: 'LRDS',
+      address: '0xb676f87a6e701f0de8de5ab91b56b66109766db1',
+      decimals: 18,
+    },
+    BOTTO: {
+      name: 'BOTTO',
+      address: '0x24914cb6bd01e6a0cf2a9c0478e33c25926e6a0c',
+      decimals: 18,
+    },
+    ANZ: {
+      name: 'ANZ',
+      address: '0xeec468333ccc16d4bf1cef497a56cf8c0aae4ca3',
+      decimals: 18,
+    },
+    CHAMP: {
+      name: 'CHAMP',
+      address: '0xeb6d78148f001f3aa2f588997c5e102e489ad341',
+      decimals: 18,
+    },
+    HENLO: {
+      name: 'HENLO',
+      address: '0x23A96680Ccde03Bd4Bdd9a3e9a0Cb56A5D27F7c9',
+      decimals: 18,
+    },
+    RFL: {
+      name: 'RFL',
+      address: '0x6e2c81b6c2c0e02360f00a0da694e489acb0b05e',
+      decimals: 18,
+    },
+    HEU: {
+      name: 'HEU',
+      address: '0xef22cb48b8483df6152e1423b19df5553bbd818b',
+      decimals: 18,
+    },
+    DRV: {
+      name: 'DRV',
+      address: '0x9d0e8f5b25384c7310cb8c6ae32c8fbeb645d083',
+      decimals: 18,
+    },
+    YFI: {
+      name: 'YFI',
+      address: '0x9eaf8c1e34f05a589eda6bafdf391cf6ad3cb239',
+      decimals: 18,
+    },
+    FAI: {
+      name: 'FAI',
+      address: '0xb33ff54b9f7242ef1593d2c9bcd8f9df46c77935',
+      decimals: 18,
+    },
+    VVV: {
+      name: 'VVV',
+      address: '0xacfe6019ed1a7dc6f7b508c02d1b04ec88cc21bf',
+      decimals: 18,
+    },
+    WMTX: {
+      name: 'WMTX',
+      address: '0x3e31966d4f81c72d2a55310a6365a56a4393e98d',
+      decimals: 6,
+    },
+    sUSDS: {
+      name: 'sUSDS',
+      address: '0x5875eEE11Cf8398102FdAd704C9E96607675467a',
+      decimals: 18,
+    },
+    MORPHO: {
+      name: 'MORPHO',
+      address: '0xBAa5CC21fd487B8Fcc2F632f3F4E8D37262a0842',
+      decimals: 18
+    },
+    axlOP: {
+      name: 'axlOP',
+      address: '0x994ac01750047B9d35431a7Ae4Ed312ee955E030',
+      decimals: 18,
+    },
+  },
+}
