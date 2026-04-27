@@ -12,19 +12,19 @@ import { logger } from "@/lib/logger"
 
 const RPC_URLS: Record<SupportedChainId, string> = {
   [SUPPORTED_CHAINS.ETHEREUM]:
-    process.env.NEXT_PUBLIC_ETHEREUM_RPC_URL || "https://eth.llamarpc.com",
+    process.env.NEXT_PUBLIC_ETHEREUM_RPC_URL || "https://eth-mainnet.g.alchemy.com/v2/6Rjc8z4uE-izjcZf2w_BbbdXiuyZden9",
   [SUPPORTED_CHAINS.OPTIMISM]:
-    process.env.NEXT_PUBLIC_OPTIMISM_RPC_URL || "https://mainnet.optimism.io",
+    process.env.NEXT_PUBLIC_OPTIMISM_RPC_URL || "https://opt-mainnet.g.alchemy.com/v2/6Rjc8z4uE-izjcZf2w_BbbdXiuyZden9",
   [SUPPORTED_CHAINS.BNB]:
-    process.env.NEXT_PUBLIC_BNB_RPC_URL || "https://bsc-dataseed.binance.org",
+    process.env.NEXT_PUBLIC_BNB_RPC_URL || "https://bnb-mainnet.g.alchemy.com/v2/6Rjc8z4uE-izjcZf2w_BbbdXiuyZden9",
   [SUPPORTED_CHAINS.POLYGON]:
-    process.env.NEXT_PUBLIC_POLYGON_RPC_URL || "https://polygon-rpc.com",
+    process.env.NEXT_PUBLIC_POLYGON_RPC_URL || "https://polygon-mainnet.g.alchemy.com/v2/6Rjc8z4uE-izjcZf2w_BbbdXiuyZden9",
   [SUPPORTED_CHAINS.AVALANCHE]:
-    process.env.NEXT_PUBLIC_AVALANCHE_RPC_URL || "https://api.avax.network/ext/bc/C/rpc",
+    process.env.NEXT_PUBLIC_AVALANCHE_RPC_URL || "https://avax-mainnet.g.alchemy.com/v2/6Rjc8z4uE-izjcZf2w_BbbdXiuyZden9",
   [SUPPORTED_CHAINS.ARBITRUM]:
-    process.env.NEXT_PUBLIC_ARBITRUM_RPC_URL || "https://arb1.arbitrum.io/rpc",
+    process.env.NEXT_PUBLIC_ARBITRUM_RPC_URL || "https://arb-mainnet.g.alchemy.com/v2/6Rjc8z4uE-izjcZf2w_BbbdXiuyZden9",
   [SUPPORTED_CHAINS.BASE]:
-    process.env.NEXT_PUBLIC_BASE_RPC_URL || "https://mainnet.base.org",
+    process.env.NEXT_PUBLIC_BASE_RPC_URL || "https://base-mainnet.g.alchemy.com/v2/6Rjc8z4uE-izjcZf2w_BbbdXiuyZden9",
 }
 
 const DEFILLAMA_CHAIN_NAMES: Record<SupportedChainId, string> = {
