@@ -1,6 +1,9 @@
-import { useEffect, useMemo } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
+import type { SwapCall } from "@/types";
 import type { Token, SupportedChainId, SwapQuote } from "@/types";
 import { APP_CONFIG, FEE_CONFIG } from "@/types";
+
+const MAX_BATCH_CALLS = 10
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import {
@@ -55,6 +58,11 @@ export default function SwapConfiguration({
     loading: buildingCalls,
     error: buildError,
   } = useSwapBuilder();
+
+  const pendingBatchesRef = useRef<SwapCall[][]>([])
+  const currentBatchIdxRef = useRef(0)
+  const completedTxHashesRef = useRef<string[]>([])
+  const [batchProgress, setBatchProgress] = useState<{ current: number; total: number } | null>(null)
 
   const callsIdString = typeof callsId === "string" ? callsId : callsId?.id;
   const {
@@ -131,7 +139,16 @@ export default function SwapConfiguration({
       if (calls.length === 0) {
         throw new Error("No valid swap calls could be built");
       }
-      sendCalls({ calls, experimental_fallback: true });
+
+      const batches: SwapCall[][] = []
+      for (let i = 0; i < calls.length; i += MAX_BATCH_CALLS) {
+        batches.push(calls.slice(i, i + MAX_BATCH_CALLS))
+      }
+      pendingBatchesRef.current = batches
+      currentBatchIdxRef.current = 0
+      completedTxHashesRef.current = []
+      setBatchProgress({ current: 1, total: batches.length })
+      sendCalls({ calls: batches[0], experimental_fallback: true });
     } catch (error: unknown) {
       const errorMessage = error instanceof Error ? error.message : "Unknown error occurred";
       console.error("Error executing swap:", error);
@@ -142,24 +159,33 @@ export default function SwapConfiguration({
   useEffect(() => {
     if (callsStatus) {
       if (callsStatus?.status === "success") {
-        let actualTxHash = callsIdString;
-        if (callsStatus.receipts && callsStatus.receipts.length > 0) {
-          actualTxHash = callsStatus.receipts[0].transactionHash;
+        const txHash = callsStatus.receipts?.[0]?.transactionHash ?? callsIdString ?? ""
+        completedTxHashesRef.current.push(txHash)
+
+        const nextIdx = currentBatchIdxRef.current + 1
+        if (nextIdx < pendingBatchesRef.current.length) {
+          currentBatchIdxRef.current = nextIdx
+          setBatchProgress({ current: nextIdx + 1, total: pendingBatchesRef.current.length })
+          sendCalls({ calls: pendingBatchesRef.current[nextIdx], experimental_fallback: true })
+        } else {
+          setBatchProgress(null)
+          onExecute(completedTxHashesRef.current[0], atomicSupported)
         }
-        onExecute(actualTxHash, atomicSupported);
       } else if (callsStatus?.status !== "pending") {
         console.error("Batch transaction failed:", callsStatus);
+        setBatchProgress(null)
         alert("Batch transaction failed. Please try again.");
       }
     }
     if (callsError) {
       console.error("Error waiting for batch transaction:", callsError);
+      setBatchProgress(null)
       alert("Error monitoring transaction. Please check your wallet.");
     }
-  }, [callsStatus, callsError, callsIdString, onExecute, atomicSupported]);
+  }, [callsStatus, callsError, callsIdString, onExecute, atomicSupported, sendCalls]);
 
   // ── Executing / waiting state ───────────────────────────────────────────────
-  if (executing || sendingCalls || isWaitingForCalls) {
+  if (executing || sendingCalls || isWaitingForCalls || batchProgress !== null) {
     return (
       <div className="max-w-md mx-auto">
         <div className="border border-border/70 rounded bg-card p-10 text-center">
@@ -170,9 +196,9 @@ export default function SwapConfiguration({
           <h2 className="font-display text-xl font-bold mb-3">Executing Swap</h2>
           <p className="text-muted-foreground text-sm">
             {sendingCalls
-              ? "Please confirm the batch transaction in your wallet..."
+              ? `Please confirm batch${batchProgress && batchProgress.total > 1 ? ` ${batchProgress.current}/${batchProgress.total}` : ""} in your wallet...`
               : isWaitingForCalls
-              ? "Waiting for on-chain confirmation..."
+              ? `Waiting for on-chain confirmation${batchProgress && batchProgress.total > 1 ? ` (${batchProgress.current}/${batchProgress.total})` : ""}...`
               : "Processing batch transaction..."}
           </p>
           {(sendCallsError || buildError || callsError) && (
