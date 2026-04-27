@@ -5,20 +5,35 @@ import { getAddress, type Address } from "viem"
 import type { Token, ApiStatus, SupportedChainId } from "@/types"
 import { APP_CONFIG, SUPPORTED_CHAINS } from "@/types"
 import { getTokenLogoUrl } from "@/lib/utils"
-import { TOKEN_LIST } from "@/lib/token"
+// import { TOKEN_LIST } from "@/lib/token"
 import { logger } from "@/lib/logger"
 
 // ─── Config ──────────────────────────────────────────────────────────────────
 
 const RPC_URLS: Record<SupportedChainId, string> = {
+  [SUPPORTED_CHAINS.ETHEREUM]:
+    process.env.NEXT_PUBLIC_ETHEREUM_RPC_URL || "https://eth.llamarpc.com",
   [SUPPORTED_CHAINS.OPTIMISM]:
     process.env.NEXT_PUBLIC_OPTIMISM_RPC_URL || "https://mainnet.optimism.io",
+  [SUPPORTED_CHAINS.BNB]:
+    process.env.NEXT_PUBLIC_BNB_RPC_URL || "https://bsc-dataseed.binance.org",
+  [SUPPORTED_CHAINS.POLYGON]:
+    process.env.NEXT_PUBLIC_POLYGON_RPC_URL || "https://polygon-rpc.com",
+  [SUPPORTED_CHAINS.AVALANCHE]:
+    process.env.NEXT_PUBLIC_AVALANCHE_RPC_URL || "https://api.avax.network/ext/bc/C/rpc",
+  [SUPPORTED_CHAINS.ARBITRUM]:
+    process.env.NEXT_PUBLIC_ARBITRUM_RPC_URL || "https://arb1.arbitrum.io/rpc",
   [SUPPORTED_CHAINS.BASE]:
     process.env.NEXT_PUBLIC_BASE_RPC_URL || "https://mainnet.base.org",
 }
 
 const DEFILLAMA_CHAIN_NAMES: Record<SupportedChainId, string> = {
+  [SUPPORTED_CHAINS.ETHEREUM]: "ethereum",
   [SUPPORTED_CHAINS.OPTIMISM]: "optimism",
+  [SUPPORTED_CHAINS.BNB]: "bsc",
+  [SUPPORTED_CHAINS.POLYGON]: "polygon",
+  [SUPPORTED_CHAINS.AVALANCHE]: "avax",
+  [SUPPORTED_CHAINS.ARBITRUM]: "arbitrum",
   [SUPPORTED_CHAINS.BASE]: "base",
 }
 
@@ -102,12 +117,16 @@ async function fetchDefiLlamaPrices(
   if (!contractAddresses.length) return map
 
   try {
-    const coins = contractAddresses.map((a) => `${llamaChain}:${a.toLowerCase()}`).join(",")
-    const res = await fetch(`https://coins.llama.fi/prices/current/${coins}`)
-    if (!res.ok) return map
-    const data: { coins: Record<string, { price: number }> } = await res.json()
-    for (const [key, coin] of Object.entries(data.coins)) {
-      if (coin?.price) map.set(key, coin.price)
+    const BATCH_SIZE = 30
+    for (let i = 0; i < contractAddresses.length; i += BATCH_SIZE) {
+      const batch = contractAddresses.slice(i, i + BATCH_SIZE)
+      const coins = batch.map((a) => `${llamaChain}:${a.toLowerCase()}`).join(",")
+      const res = await fetch(`https://coins.llama.fi/prices/current/${coins}`)
+      if (!res.ok) continue
+      const data: { coins: Record<string, { price: number }> } = await res.json()
+      for (const [key, coin] of Object.entries(data.coins)) {
+        if (coin?.price) map.set(key, coin.price)
+      }
     }
   } catch {
     // prices optional — degrade to quote: 0
@@ -168,9 +187,9 @@ export function useTokenBalances(address: string | undefined, chainId: Supported
       const rpcUrl = RPC_URLS[chainId]
       const llamaChain = DEFILLAMA_CHAIN_NAMES[chainId]
 
-      const allowedAddresses = new Set(
-        Object.values((TOKEN_LIST as Record<number, Record<string, { address: string }>>)[chainId] ?? {}).map((t) => t.address.toLowerCase())
-      )
+      // const allowedAddresses = new Set(
+      //   Object.values((TOKEN_LIST as Record<number, Record<string, { address: string }>>)[chainId] ?? {}).map((t) => t.address.toLowerCase())
+      // )
 
       // Step 1: balances (paginated)
       const rawBalances = await fetchTokenBalances(rpcUrl, address)
@@ -179,7 +198,7 @@ export function useTokenBalances(address: string | undefined, chainId: Supported
       const seen = new Set<string>()
       const nonZero = rawBalances.filter((t) => {
         if (t.error || !t.tokenBalance || t.tokenBalance === ZERO_BALANCE) return false
-        if (!allowedAddresses.has(t.contractAddress.toLowerCase())) return false
+        // if (!allowedAddresses.has(t.contractAddress.toLowerCase())) return false
         const key = t.contractAddress.toLowerCase()
         if (seen.has(key)) return false
         seen.add(key)
@@ -230,7 +249,7 @@ export function useTokenBalances(address: string | undefined, chainId: Supported
           balance: t.tokenBalance,
           quote,
         }
-      }).sort((a, b) => b.quote - a.quote)
+      }).filter(item => item.quote).sort((a, b) => b.quote - a.quote)
 
       setApiStatus('working')
       setTokens(items)

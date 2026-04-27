@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useCallback } from "react"
-import { encodeFunctionData, type Address, type Hex, maxUint256 } from "viem"
+import { encodeFunctionData, type Address, type Hex } from "viem"
 import type { SwapCall, SwapQuote, Token, SupportedChainId } from "@/types"
 
 const erc20ApproveAbi = [
@@ -55,7 +55,7 @@ export function useSwapBuilder() {
             const approveData = encodeFunctionData({
               abi: erc20ApproveAbi,
               functionName: "approve",
-              args: [approveTarget, maxUint256],
+              args: [approveTarget, BigInt(quote.input.amount_wei)],
             })
 
             calls.push({

@@ -372,7 +372,7 @@ export default function TokenSweeperApp() {
           </div>
         </section>
 
-        <EIP7702Info />
+        {/* <EIP7702Info /> */}
         <Footer />
       </div>
     )

@@ -13,7 +13,12 @@ export const APP_CONFIG = {
  * Chain configuration
  */
 export const SUPPORTED_CHAINS = {
+  ETHEREUM: 1,
   OPTIMISM: 10,
+  BNB: 56,
+  POLYGON: 137,
+  AVALANCHE: 43114,
+  ARBITRUM: 42161,
   BASE: 8453,
 } as const
 
@@ -147,7 +152,12 @@ export interface SwapResult {
  * Chain names mapping
  */
 export const CHAIN_NAMES: Record<SupportedChainId, string> = {
+  [SUPPORTED_CHAINS.ETHEREUM]: "Ethereum",
   [SUPPORTED_CHAINS.OPTIMISM]: "Optimism",
+  [SUPPORTED_CHAINS.BNB]: "BNB Chain",
+  [SUPPORTED_CHAINS.POLYGON]: "Polygon",
+  [SUPPORTED_CHAINS.AVALANCHE]: "Avalanche",
+  [SUPPORTED_CHAINS.ARBITRUM]: "Arbitrum",
   [SUPPORTED_CHAINS.BASE]: "Base",
 } as const
 
@@ -155,7 +165,12 @@ export const CHAIN_NAMES: Record<SupportedChainId, string> = {
  * API chain names for Covalent
  */
 export const COVALENT_CHAIN_NAMES: Record<SupportedChainId, string> = {
+  [SUPPORTED_CHAINS.ETHEREUM]: "eth-mainnet",
   [SUPPORTED_CHAINS.OPTIMISM]: "optimism-mainnet",
+  [SUPPORTED_CHAINS.BNB]: "bsc-mainnet",
+  [SUPPORTED_CHAINS.POLYGON]: "matic-mainnet",
+  [SUPPORTED_CHAINS.AVALANCHE]: "avalanche-mainnet",
+  [SUPPORTED_CHAINS.ARBITRUM]: "arbitrum-mainnet",
   [SUPPORTED_CHAINS.BASE]: "base-mainnet",
 } as const
 
@@ -163,7 +178,12 @@ export const COVALENT_CHAIN_NAMES: Record<SupportedChainId, string> = {
  * Explorer URLs
  */
 export const EXPLORER_URLS: Record<SupportedChainId, string> = {
+  [SUPPORTED_CHAINS.ETHEREUM]: "https://etherscan.io",
   [SUPPORTED_CHAINS.OPTIMISM]: "https://optimistic.etherscan.io",
+  [SUPPORTED_CHAINS.BNB]: "https://bscscan.com",
+  [SUPPORTED_CHAINS.POLYGON]: "https://polygonscan.com",
+  [SUPPORTED_CHAINS.AVALANCHE]: "https://snowtrace.io",
+  [SUPPORTED_CHAINS.ARBITRUM]: "https://arbiscan.io",
   [SUPPORTED_CHAINS.BASE]: "https://basescan.org",
 } as const
 
@@ -171,7 +191,12 @@ export const EXPLORER_URLS: Record<SupportedChainId, string> = {
  * Chain identifiers for DeBank token logos
  */
 export const DEBANK_CHAIN_NAMES: Record<SupportedChainId, string> = {
+  [SUPPORTED_CHAINS.ETHEREUM]: "eth",
   [SUPPORTED_CHAINS.OPTIMISM]: "op",
+  [SUPPORTED_CHAINS.BNB]: "bsc",
+  [SUPPORTED_CHAINS.POLYGON]: "matic",
+  [SUPPORTED_CHAINS.AVALANCHE]: "avax",
+  [SUPPORTED_CHAINS.ARBITRUM]: "arb",
   [SUPPORTED_CHAINS.BASE]: "base",
 } as const
 
@@ -179,7 +204,12 @@ export const DEBANK_CHAIN_NAMES: Record<SupportedChainId, string> = {
  * Chain identifiers for Trust Wallet assets
  */
 export const TRUST_WALLET_CHAIN_NAMES: Record<SupportedChainId, string> = {
+  [SUPPORTED_CHAINS.ETHEREUM]: "ethereum",
   [SUPPORTED_CHAINS.OPTIMISM]: "optimism",
+  [SUPPORTED_CHAINS.BNB]: "smartchain",
+  [SUPPORTED_CHAINS.POLYGON]: "polygon",
+  [SUPPORTED_CHAINS.AVALANCHE]: "avalanchec",
+  [SUPPORTED_CHAINS.ARBITRUM]: "arbitrum",
   [SUPPORTED_CHAINS.BASE]: "base",
 } as const
 
@@ -187,7 +217,12 @@ export const TRUST_WALLET_CHAIN_NAMES: Record<SupportedChainId, string> = {
  * ExSwapper-supported chain IDs (chains with deployed ExSwapper contract)
  */
 export const EXSWAPPER_SUPPORTED_CHAINS = new Set([
+  SUPPORTED_CHAINS.ETHEREUM,
   SUPPORTED_CHAINS.OPTIMISM,
+  SUPPORTED_CHAINS.BNB,
+  SUPPORTED_CHAINS.POLYGON,
+  SUPPORTED_CHAINS.AVALANCHE,
+  SUPPORTED_CHAINS.ARBITRUM,
   SUPPORTED_CHAINS.BASE,
 ])
 
