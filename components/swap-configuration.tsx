@@ -157,6 +157,12 @@ export default function SwapConfiguration({
   };
 
   useEffect(() => {
+    if (sendCallsError) {
+      setBatchProgress(null)
+    }
+  }, [sendCallsError])
+
+  useEffect(() => {
     if (callsStatus) {
       if (callsStatus?.status === "success") {
         const txHash = callsStatus.receipts?.[0]?.transactionHash ?? callsIdString ?? ""
